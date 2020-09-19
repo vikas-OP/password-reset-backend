@@ -7,7 +7,8 @@ const nodemailer = require("nodemailer");
 const { response } = require("express");
 const app = express();
 const mongoClient = mongodb.MongoClient;
-const url = "mongodb://localhost:27017";
+const url =
+  "mongodb+srv://test_user:9r4dDd8Itvp0Nprb@cluster0.zzynb.mongodb.net?retryWrites=true&w=majority";
 const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(
@@ -124,7 +125,7 @@ app.post("/forgotpassword", async (req, res) => {
           { $set: { randomString: randomString } }
         );
       client.close();
-      let randomUrl = `http://localhost:3000/resetpassword/${randomString}`;
+      let randomUrl = `https://vikas-password-reset.netlify.app/newpassword.html?query=${randomString}`;
       let transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
